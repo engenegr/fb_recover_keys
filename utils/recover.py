@@ -104,14 +104,14 @@ def restore_key_and_chaincode(zip_path, private_pem_path, passphrase, key_pass=N
         if "metadata.json" not in zipfile.namelist():
             raise RecoveryErrorMetadataNotFound(zip_path)
         with zipfile.open("metadata.json") as file:
-            obj = json.loads(file.read())
+            obj = json.loads(file.read().decode('utf-8'))
             chain_code = bytes.fromhex(obj["chainCode"])
             key_id = obj["keyId"]
             metadata_public_key = obj["publicKey"]
         for name in zipfile.namelist():
             with zipfile.open(name) as file:
                 if name == "MOBILE":
-                    obj = json.loads(file.read())
+                    obj = json.loads(file.read().decode('utf-8'))
                     if obj["keyId"] != key_id:
                         raise RecoveryErrorKeyIdNoMatch(obj["keyId"], key_id)
                     try:

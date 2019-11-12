@@ -34,3 +34,19 @@
 #### Run the utility locally
 
 * ./fb_recover_keys.py `<backup zip file> <RSA recovery private key>` --prv
+
+## Airgapped setup
+
+## Download dependencies 
+
+* mkdir ./cache
+* pip3 download -r requirements.txt -d ./cache
+
+Copy `cache` to airgapped device.
+
+## Install dependencies from binaries
+
+* pip3 install -r requirements.txt --find-links=./cache
+
+* pip3 download -r requirements.txt
+
